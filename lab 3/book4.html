@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harry Potter - BookSphere</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <a href="home.html">🏠 Home</a>
+        <span>/</span>
+        <span>Fantasy & Adventure</span>
+        <span>/</span>
+        <span style="color: var(--text-primary);">Harry Potter</span>
+    </div>
+
+    <div class="card">
+        <!-- Book Header -->
+        <div class="book-header">
+            <div class="book-title-area">
+                <div class="book-icon-badge" style="background: rgba(245, 158, 11, 0.12); color: #f59e0b;">📙</div>
+                <div class="book-title-meta">
+                    <h1>Harry Potter and the Philosopher's Stone</h1>
+                    <div class="book-author">by <b>J. K. Rowling</b></div>
+                </div>
+            </div>
+            <div class="header-actions">
+                <select id="status-select" class="status-select">
+                    <option value="unread">📖 Want to Read</option>
+                    <option value="reading">⏳ Currently Reading</option>
+                    <option value="completed">✅ Completed</option>
+                </select>
+                <button id="btn-favorite" class="btn btn-favorite">🤍 Favorite</button>
+                <button id="btn-share" class="btn">🔗 Share</button>
+            </div>
+        </div>
+
+        <!-- Meta Pills -->
+        <div class="badge-group">
+            <span class="badge" style="background: rgba(139, 92, 246, 0.12); color: var(--accent-purple);">Fantasy / Adventure</span>
+            <span class="badge badge-primary">📅 Published: 1997</span>
+            <span class="badge badge-amber">📄 223 Pages</span>
+            <span class="badge">⏱️ ~4.5 Hours Read</span>
+            <span class="badge">⚡ Over 120 Million Copies Sold</span>
+        </div>
+
+        <!-- Text-to-Speech Audio Player Bar -->
+        <div class="audio-bar">
+            <div class="audio-bar-info">
+                <div class="audio-pulse" id="audio-pulse"></div>
+                <div>
+                    <div style="font-size: 13px; font-weight: 700;">🔊 AI Audio Reader</div>
+                    <div style="font-size: 11px; color: var(--text-muted);">Listen to this book's overview & summary</div>
+                </div>
+            </div>
+            <div class="audio-bar-controls">
+                <select id="audio-rate" class="status-select" style="padding: 6px 8px; font-size: 12px;">
+                    <option value="0.9">0.9x Speed</option>
+                    <option value="1.0" selected>1.0x Normal</option>
+                    <option value="1.25">1.25x Fast</option>
+                </select>
+                <button id="btn-audio-play" class="btn btn-primary" style="padding: 7px 12px; font-size: 13px;">▶️ Listen</button>
+                <button id="btn-audio-stop" class="btn" style="padding: 7px 12px; font-size: 13px;">⏹️ Stop</button>
+            </div>
+        </div>
+
+        <!-- Interactive Reading Progress Bar -->
+        <div class="progress-container">
+            <div class="progress-header">
+                <span id="progress-text">0% completed</span>
+                <span id="page-text">Page 0 of 223</span>
+            </div>
+            <div class="progress-bar-track">
+                <div class="progress-bar-fill" id="progress-fill"></div>
+            </div>
+            <input type="range" id="progress-slider" class="progress-slider" min="0" max="100" value="0">
+        </div>
+
+        <!-- Navigation Tabs -->
+        <div class="tabs-nav">
+            <button class="tab-btn active" data-tab="overview">📖 Overview</button>
+            <button class="tab-btn" data-tab="takeaways">💡 Key Takeaways</button>
+            <button class="tab-btn" data-tab="quotes">💬 Famous Quotes</button>
+            <button class="tab-btn" data-tab="notes">📝 My Notes</button>
+        </div>
+
+        <!-- Tab 1: Overview -->
+        <div class="tab-pane active" id="tab-overview">
+            <div id="book-description" style="font-size: 15px; line-height: 1.7; color: var(--text-secondary); margin-bottom: 20px;">
+                <p style="margin-bottom: 12px;">
+                    <b>Harry Potter and the Philosopher's Stone</b> introduces Harry Potter, an eleven-year-old orphaned boy who discovers on his birthday that he is in fact a wizard. He is invited to attend the prestigious <b>Hogwarts School of Witchcraft and Wizardry</b>.
+                </p>
+                <p>
+                    Accompanied by his newfound best friends, Ron Weasley and Hermione Granger, Harry embarks on a magical coming-of-age journey filled with Quidditch matches, enchanted chess sets, and ancient secrets. Together, they uncover a plot to steal the immortal Philosopher's Stone and face the dark forces threatening the wizarding world.
+                </p>
+            </div>
+
+            <!-- Book Quick Facts Grid -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-bottom: 20px;">
+                <div style="background: var(--bg-input); padding: 12px 16px; border-radius: var(--radius-sm); border: 1px solid var(--border-color);">
+                    <div style="font-size: 11px; color: var(--text-muted); font-weight: 600;">HOGWARTS HOUSE</div>
+                    <div style="font-size: 14px; font-weight: 700; margin-top: 2px;">Gryffindor 🦁</div>
+                </div>
+                <div style="background: var(--bg-input); padding: 12px 16px; border-radius: var(--radius-sm); border: 1px solid var(--border-color);">
+                    <div style="font-size: 11px; color: var(--text-muted); font-weight: 600;">SERIES BOOK</div>
+                    <div style="font-size: 14px; font-weight: 700; margin-top: 2px;">Book 1 of 7</div>
+                </div>
+                <div style="background: var(--bg-input); padding: 12px 16px; border-radius: var(--radius-sm); border: 1px solid var(--border-color);">
+                    <div style="font-size: 11px; color: var(--text-muted); font-weight: 600;">AWARDS</div>
+                    <div style="font-size: 14px; font-weight: 700; margin-top: 2px;">Nestlé Smarties Book Prize</div>
+                </div>
+            </div>
+
+            <!-- Interactive Star Rating Widget -->
+            <div class="rating-widget">
+                <div class="stars-container">
+                    <span class="star">☆</span>
+                    <span class="star">☆</span>
+                    <span class="star">☆</span>
+                    <span class="star">☆</span>
+                    <span class="star">☆</span>
+                </div>
+                <div class="rating-text" id="rating-text">Click a star to rate this book</div>
+            </div>
+        </div>
+
+        <!-- Tab 2: Key Takeaways -->
+        <div class="tab-pane" id="tab-takeaways">
+            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 14px;">Check off timeless lessons and values learned from Harry's first year:</p>
+            <div class="takeaway-list">
+                <label class="takeaway-item">
+                    <input type="checkbox" class="takeaway-checkbox">
+                    <div>
+                        <b>Our Choices Define Us</b>
+                        <p style="font-size: 13px; color: var(--text-secondary); margin-top: 2px;">It is our choices, far more than our abilities, that show what we truly are. Harry chooses Gryffindor over Slytherin.</p>
+                    </div>
+                </label>
+
+                <label class="takeaway-item">
+                    <input type="checkbox" class="takeaway-checkbox">
+                    <div>
+                        <b>Bravery Takes Many Forms</b>
+                        <p style="font-size: 13px; color: var(--text-secondary); margin-top: 2px;">Standing up to enemies requires courage, but standing up to your closest friends (as Neville Longbottom does) takes even more.</p>
+                    </div>
+                </label>
+
+                <label class="takeaway-item">
+                    <input type="checkbox" class="takeaway-checkbox">
+                    <div>
+                        <b>The Ultimate Power of Love & Sacrifice</b>
+                        <p style="font-size: 13px; color: var(--text-secondary); margin-top: 2px;">Lily Potter's love leaves an indelible magical protection that dark magic cannot pierce.</p>
+                    </div>
+                </label>
+
+                <label class="takeaway-item">
+                    <input type="checkbox" class="takeaway-checkbox">
+                    <div>
+                        <b>True Friendship Transcends Differences</b>
+                        <p style="font-size: 13px; color: var(--text-secondary); margin-top: 2px;">There are some things you cannot share without ending up liking each other, and knocking out a twelve-foot mountain troll is one of them.</p>
+                    </div>
+                </label>
+            </div>
+        </div>
+
+        <!-- Tab 3: Famous Quotes -->
+        <div class="tab-pane" id="tab-quotes">
+            <div class="quote-grid">
+                <div class="quote-card">
+                    <div class="quote-text">"It takes a great deal of bravery to stand up to our enemies, but just as much to stand up to our friends."</div>
+                    <div class="quote-card-footer">
+                        <span class="quote-page">Albus Dumbledore</span>
+                        <button class="btn btn-copy-quote" onclick="copyTextToClipboard('It takes a great deal of bravery to stand up to our enemies, but just as much to stand up to our friends. — Harry Potter', 'Quote copied!')">📋 Copy</button>
+                    </div>
+                </div>
+
+                <div class="quote-card">
+                    <div class="quote-text">"To the well-organized mind, death is but the next great adventure."</div>
+                    <div class="quote-card-footer">
+                        <span class="quote-page">Albus Dumbledore</span>
+                        <button class="btn btn-copy-quote" onclick="copyTextToClipboard('To the well-organized mind, death is but the next great adventure. — Harry Potter', 'Quote copied!')">📋 Copy</button>
+                    </div>
+                </div>
+
+                <div class="quote-card">
+                    <div class="quote-text">"The truth. It is a beautiful and terrible thing, and should therefore be treated with great caution."</div>
+                    <div class="quote-card-footer">
+                        <span class="quote-page">Page 216</span>
+                        <button class="btn btn-copy-quote" onclick="copyTextToClipboard('The truth. It is a beautiful and terrible thing, and should therefore be treated with great caution. — Harry Potter', 'Quote copied!')">📋 Copy</button>
+                    </div>
+                </div>
+
+                <div class="quote-card">
+                    <div class="quote-text">"Ah, music. A magic beyond all we do here!"</div>
+                    <div class="quote-card-footer">
+                        <span class="quote-page">Page 95</span>
+                        <button class="btn btn-copy-quote" onclick="copyTextToClipboard('Ah, music. A magic beyond all we do here! — Harry Potter', 'Quote copied!')">📋 Copy</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 4: My Notes -->
+        <div class="tab-pane" id="tab-notes">
+            <div class="notes-container">
+                <textarea id="notes-textarea" class="notes-textarea" placeholder="Write your favorite spells, Hogwarts house reflections, or thoughts on Harry Potter..."></textarea>
+                <div class="notes-footer">
+                    <span id="notes-status">Notes will auto-save as you type.</span>
+                    <button id="btn-clear-notes" class="btn" style="padding: 4px 10px; font-size: 12px; color: var(--accent-rose);">🗑️ Clear Notes</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page Navigation Footer -->
+        <div class="page-navigation">
+            <a href="book3.html" class="btn">← Prev: Rich Dad Poor Dad</a>
+            <a href="home.html" class="btn btn-primary">Back to Home Dashboard 🏠</a>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="shared.js"></script>
+    <script>
+        setupBookDetailPage('book4', 223);
+    </script>
+</body>
+</html>
