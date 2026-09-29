@@ -1,0 +1,9 @@
+{
+  "name": "rps-camera-game",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Camera based Rock Paper Scissors game with browser hand tracking",
+  "scripts": {
+    "start": "npx serve ."
+  }
+}

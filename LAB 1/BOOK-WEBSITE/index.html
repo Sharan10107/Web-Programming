@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Library</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>📚 Book Library</h1>
+        <p>Explore our collection of books</p>
+    </header>
+
+    <main>
+        <h2>Available Books</h2>
+        <div class="book-container">
+            <div class="book-card" onclick="openBook('atomic')">
+                <div class="book-cover">
+                    <img src="images/atomic habits.jpg" alt="Atomic Habits">
+                </div>
+                <h3>Atomic Habits</h3>
+                <p class="author">James Clear</p>
+                <p class="price">₹499</p>
+            </div>
+
+            <div class="book-card" onclick="openBook('alchemist')">
+                <div class="book-cover">
+                    <img src="images/al chemist.jpg" alt="The Alchemist">
+                </div>
+                <h3>The Alchemist</h3>
+                <p class="author">Paulo Coelho</p>
+                <p class="price">₹299</p>
+            </div>
+
+            <div class="book-card" onclick="openBook('richdad')">
+                <div class="book-cover">
+                    <img src="images/rich dad poor dad.jpg" alt="Rich Dad Poor Dad">
+                </div>
+                <h3>Rich Dad Poor Dad</h3>
+                <p class="author">Robert Kiyosaki</p>
+                <p class="price">₹399</p>
+            </div>
+
+            <div class="book-card" onclick="openBook('1984')">
+                <div class="book-cover">
+                    <img src="images/1984 book.jpg" alt="1984">
+                </div>
+                <h3>1984</h3>
+                <p class="author">George Orwell</p>
+                <p class="price">₹350</p>
+            </div>
+
+            <div class="book-card" onclick="openBook('ikigai')">
+                <div class="book-cover">
+                    <img src="images/IKIGAI.jpg" alt="Ikigai">
+                </div>
+                <h3>Ikigai</h3>
+                <p class="author">Héctor García & Francesc Miralles</p>
+                <p class="price">₹450</p>
+            </div>
+
+            <div class="book-card" onclick="openBook('wings')">
+                <div class="book-cover">
+                    <img src="images/wings of fire.jpeg" alt="Wings of Fire">
+                </div>
+                <h3>Wings of Fire</h3>
+                <p class="author">A. P. J. Abdul Kalam</p>
+                <p class="price">₹350</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2026 Book Library</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

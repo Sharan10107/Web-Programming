@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Information Dashboard</title>
+    <meta name="description" content="Modern, interactive Product Information and Inventory Management Dashboard." />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@500;600;700&display=swap"
+        rel="stylesheet" />
+
+    <!-- Font Awesome CDN for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <!-- Toast Notification Container -->
+    <div id="toastContainer" class="toast-container" aria-live="polite"></div>
+
+    <!-- Header -->
+    <header class="app-header">
+        <div class="header-container">
+            <div class="brand-wrapper">
+                <div class="brand-icon">
+                    <i class="fa-solid fa-cube"></i>
+                </div>
+                <div>
+                    <h1 class="page-title">Product Information</h1>
+                    <p class="page-subtitle">Inventory & Catalog Management Dashboard</p>
+                </div>
+            </div>
+
+            <div class="header-actions">
+                <button id="themeToggleBtn" class="btn btn-secondary theme-btn" aria-label="Toggle Dark/Light Mode">
+                    <i class="fa-solid fa-moon theme-icon"></i>
+                    <span id="themeToggleText">Dark Mode</span>
+                </button>
+                <button id="resetProductsBtn" class="btn btn-outline" title="Reset to initial 5 products">
+                    <i class="fa-solid fa-rotate-left"></i>
+                    <span>Reset Data</span>
+                </button>
+                <button id="openAddModalBtn" class="btn btn-primary">
+                    <i class="fa-solid fa-plus"></i>
+                    <span>Add Product</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-container">
+        <!-- Statistics Cards Section -->
+        <section class="stats-section" aria-label="Product Statistics">
+            <div class="stat-card" id="statTotalCard">
+                <div class="stat-icon-box bg-blue">
+                    <i class="fa-solid fa-boxes-stacked"></i>
+                </div>
+                <div class="stat-info">
+                    <span class="stat-label">Total Products</span>
+                    <h2 class="stat-value" id="statTotal">0</h2>
+                </div>
+            </div>
+
+            <div class="stat-card" id="statSmartphonesCard">
+                <div class="stat-icon-box bg-purple">
+                    <i class="fa-solid fa-mobile-screen-button"></i>
+                </div>
+                <div class="stat-info">
+                    <span class="stat-label">Smartphones</span>
+                    <h2 class="stat-value" id="statSmartphones">0</h2>
+                </div>
+            </div>
+
+            <div class="stat-card" id="statLaptopsCard">
+                <div class="stat-icon-box bg-cyan">
+                    <i class="fa-solid fa-laptop"></i>
+                </div>
+                <div class="stat-info">
+                    <span class="stat-label">Laptops</span>
+                    <h2 class="stat-value" id="statLaptops">0</h2>
+                </div>
+            </div>
+
+            <div class="stat-card" id="statHeadphonesCard">
+                <div class="stat-icon-box bg-amber">
+                    <i class="fa-solid fa-headphones"></i>
+                </div>
+                <div class="stat-info">
+                    <span class="stat-label">Headphones</span>
+                    <h2 class="stat-value" id="statHeadphones">0</h2>
+                </div>
+            </div>
+
+            <div class="stat-card" id="statAvgRatingCard">
+                <div class="stat-icon-box bg-gold">
+                    <i class="fa-solid fa-star"></i>
+                </div>
+                <div class="stat-info">
+                    <span class="stat-label">Average Rating</span>
+                    <h2 class="stat-value" id="statAvgRating">0.0</h2>
+                </div>
+            </div>
+        </section>
+
+        <!-- Controls / Filters / Search Section -->
+        <section class="controls-card" aria-label="Filters and Search Controls">
+            <div class="controls-grid">
+                <!-- Search Box -->
+                <div class="control-group search-group">
+                    <label for="searchInput" class="control-label">
+                        <i class="fa-solid fa-magnifying-glass"></i> Search Products
+                    </label>
+                    <div class="input-icon-wrapper">
+                        <i class="fa-solid fa-magnifying-glass input-icon"></i>
+                        <input type="text" id="searchInput" class="form-control"
+                            placeholder="Search by ID, name, brand, category, status..." autocomplete="off" />
+                        <button id="clearSearchBtn" class="clear-input-btn hidden" aria-label="Clear Search">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Filter Category -->
+                <div class="control-group">
+                    <label for="categoryFilter" class="control-label">
+                        <i class="fa-solid fa-tags"></i> Category
+                    </label>
+                    <div class="select-wrapper">
+                        <select id="categoryFilter" class="form-control">
+                            <option value="all">All Categories</option>
+                            <option value="Smartphone">Smartphone</option>
+                            <option value="Laptop">Laptop</option>
+                            <option value="Headphones">Headphones</option>
+                        </select>
+                        <i class="fa-solid fa-chevron-down select-icon"></i>
+                    </div>
+                </div>
+
+                <!-- Filter Brand -->
+                <div class="control-group">
+                    <label for="brandFilter" class="control-label">
+                        <i class="fa-solid fa-copyright"></i> Brand
+                    </label>
+                    <div class="select-wrapper">
+                        <select id="brandFilter" class="form-control">
+                            <option value="all">All Brands</option>
+                            <option value="Apple">Apple</option>
+                            <option value="Samsung">Samsung</option>
+                            <option value="Dell">Dell</option>
+                            <option value="Sony">Sony</option>
+                        </select>
+                        <i class="fa-solid fa-chevron-down select-icon"></i>
+                    </div>
+                </div>
+
+                <!-- Sort By -->
+                <div class="control-group">
+                    <label for="sortBySelect" class="control-label">
+                        <i class="fa-solid fa-arrow-down-short-wide"></i> Sort By
+                    </label>
+                    <div class="select-wrapper">
+                        <select id="sortBySelect" class="form-control">
+                            <option value="default">Default</option>
+                            <option value="price-asc">Price: Low to High</option>
+                            <option value="price-desc">Price: High to Low</option>
+                            <option value="rating-desc">Rating: High to Low</option>
+                            <option value="name-asc">Product Name: A-Z</option>
+                            <option value="name-desc">Product Name: Z-A</option>
+                        </select>
+                        <i class="fa-solid fa-chevron-down select-icon"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Secondary Controls Bar -->
+            <div class="sub-controls-bar">
+                <div class="filter-toggles">
+                    <button id="favoritesFilterBtn" class="btn btn-toggle" aria-pressed="false">
+                        <i class="fa-regular fa-heart"></i>
+                        <span>Show Favorites</span>
+                        <span id="favoritesBadge" class="count-pill">0</span>
+                    </button>
+
+                    <div class="active-filter-indicator" id="resultsCount">
+                        Showing <strong>0</strong> products
+                    </div>
+                </div>
+
+                <div class="view-toggles">
+                    <button id="tableViewBtn" class="view-btn active" title="Table View" aria-label="Table View">
+                        <i class="fa-solid fa-table-list"></i>
+                    </button>
+                    <button id="gridViewBtn" class="view-btn" title="Grid Cards View" aria-label="Grid Cards View">
+                        <i class="fa-solid fa-grip"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Product Content Area -->
+        <section class="products-section" aria-label="Product Catalog">
+            <!-- Table View -->
+            <div id="tableViewContainer" class="table-responsive-wrapper">
+                <table class="product-table" id="productTable">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="th-fav">Fav</th>
+                            <th scope="col">Product ID</th>
+                            <th scope="col">Product Name</th>
+                            <th scope="col">Brand</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Availability</th>
+                            <th scope="col">Rating</th>
+                            <th scope="col" class="text-right">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="productTableBody">
+                        <!-- Dynamic product rows rendered here -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Card Grid View -->
+            <div id="gridViewContainer" class="product-grid-wrapper hidden">
+                <div id="productGrid" class="product-cards-grid">
+                    <!-- Dynamic product cards rendered here -->
+                </div>
+            </div>
+
+            <!-- Empty State -->
+            <div id="emptyState" class="empty-state hidden">
+                <div class="empty-state-icon">
+                    <i class="fa-solid fa-box-open"></i>
+                </div>
+                <h3 class="empty-state-title">No products found</h3>
+                <p class="empty-state-text">We couldn't find any products matching your current search or filter
+                    criteria.</p>
+                <button id="clearAllFiltersBtn" class="btn btn-primary">
+                    <i class="fa-solid fa-arrow-rotate-right"></i>
+                    <span>Clear All Filters</span>
+                </button>
+            </div>
+
+            <!-- Pagination Section -->
+            <div id="paginationContainer" class="pagination-wrapper">
+                <div class="pagination-info" id="paginationInfo">
+                    Showing 1 to 5 of 5 entries
+                </div>
+                <div class="pagination-controls" id="paginationControls">
+                    <!-- Dynamic Pagination Buttons -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal: Add / Edit Product -->
+    <div id="productFormModal" class="modal-overlay hidden" role="dialog" aria-modal="true"
+        aria-labelledby="formModalTitle">
+        <div class="modal-card">
+            <div class="modal-header">
+                <div class="modal-header-icon" id="formModalIcon">
+                    <i class="fa-solid fa-plus"></i>
+                </div>
+                <div>
+                    <h3 id="formModalTitle" class="modal-title">Add New Product</h3>
+                    <p id="formModalSubtitle" class="modal-subtitle">Fill in the details below to add a product to
+                        inventory.</p>
+                </div>
+                <button class="modal-close-btn" id="closeFormModalBtn" aria-label="Close modal">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <form id="productForm" class="modal-form" novalidate>
+                <input type="hidden" id="formMode" value="add" />
+                <input type="hidden" id="originalProductId" value="" />
+
+                <div class="form-grid">
+                    <!-- Product ID -->
+                    <div class="form-field">
+                        <label for="productIdInput" class="form-label">
+                            Product ID <span class="required">*</span>
+                        </label>
+                        <input type="text" id="productIdInput" class="form-input" placeholder="e.g., 106" required />
+                        <span class="field-error" id="productIdError"></span>
+                    </div>
+
+                    <!-- Product Name -->
+                    <div class="form-field">
+                        <label for="productNameInput" class="form-label">
+                            Product Name <span class="required">*</span>
+                        </label>
+                        <input type="text" id="productNameInput" class="form-input" placeholder="e.g., iPad Air"
+                            required />
+                        <span class="field-error" id="productNameError"></span>
+                    </div>
+
+                    <!-- Brand -->
+                    <div class="form-field">
+                        <label for="brandInput" class="form-label">
+                            Brand <span class="required">*</span>
+                        </label>
+                        <input type="text" id="brandInput" class="form-input"
+                            placeholder="e.g., Apple, Samsung, Sony..." required />
+                        <span class="field-error" id="brandError"></span>
+                    </div>
+
+                    <!-- Category -->
+                    <div class="form-field">
+                        <label for="categoryInput" class="form-label">
+                            Category <span class="required">*</span>
+                        </label>
+                        <select id="categoryInput" class="form-input" required>
+                            <option value="" disabled selected>Select Category</option>
+                            <option value="Smartphone">Smartphone</option>
+                            <option value="Laptop">Laptop</option>
+                            <option value="Headphones">Headphones</option>
+                            <option value="Tablet">Tablet</option>
+                            <option value="Smartwatch">Smartwatch</option>
+                            <option value="Gaming">Gaming</option>
+                            <option value="Accessories">Accessories</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        <span class="field-error" id="categoryError"></span>
+                    </div>
+
+                    <!-- Price -->
+                    <div class="form-field">
+                        <label for="priceInput" class="form-label">
+                            Price (₹) <span class="required">*</span>
+                        </label>
+                        <input type="number" id="priceInput" class="form-input" placeholder="e.g., 49999" min="1"
+                            step="1" required />
+                        <span class="field-hint">Enter numeric value (e.g. 79999 for ₹79,999)</span>
+                        <span class="field-error" id="priceError"></span>
+                    </div>
+
+                    <!-- Availability -->
+                    <div class="form-field">
+                        <label for="availabilityInput" class="form-label">
+                            Availability <span class="required">*</span>
+                        </label>
+                        <select id="availabilityInput" class="form-input" required>
+                            <option value="In Stock">In Stock</option>
+                            <option value="Available">Available</option>
+                            <option value="Out of Stock">Out of Stock</option>
+                        </select>
+                        <span class="field-error" id="availabilityError"></span>
+                    </div>
+
+                    <!-- Rating -->
+                    <div class="form-field full-width">
+                        <label for="ratingInput" class="form-label">
+                            Rating (0.0 to 5.0) <span class="required">*</span>
+                        </label>
+                        <div class="rating-input-row">
+                            <input type="number" id="ratingInput" class="form-input" placeholder="e.g., 4.5" min="0"
+                                max="5" step="0.1" required />
+                            <div id="formRatingStarsPreview" class="stars-preview">
+                                <span class="star-text">★★★★★ 0.0</span>
+                            </div>
+                        </div>
+                        <span class="field-error" id="ratingError"></span>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="cancelFormModalBtn">Cancel</button>
+                    <button type="submit" class="btn btn-primary" id="saveProductBtn">
+                        <i class="fa-solid fa-floppy-disk"></i>
+                        <span id="saveButtonText">Save Product</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal: Product Details View -->
+    <div id="detailsModal" class="modal-overlay hidden" role="dialog" aria-modal="true"
+        aria-labelledby="detailsModalTitle">
+        <div class="modal-card details-card">
+            <div class="modal-header">
+                <div class="modal-header-icon category-icon-box" id="detailCategoryIcon">
+                    <i class="fa-solid fa-cube"></i>
+                </div>
+                <div class="details-header-title">
+                    <span class="details-badge" id="detailCategoryBadge">Category</span>
+                    <h3 id="detailsModalTitle" class="modal-title">Product Name</h3>
+                    <span class="details-id-text" id="detailIdText">ID: #101</span>
+                </div>
+                <button class="modal-close-btn" id="closeDetailsModalBtn" aria-label="Close modal">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="details-body">
+                <div class="detail-price-rating-hero">
+                    <div class="detail-price-box">
+                        <span class="detail-price-label">Price</span>
+                        <h2 class="detail-price-val" id="detailPrice">₹0</h2>
+                    </div>
+                    <div class="detail-rating-box">
+                        <span class="detail-rating-label">Rating</span>
+                        <div class="detail-stars-wrapper" id="detailStars"></div>
+                    </div>
+                </div>
+
+                <div class="detail-grid">
+                    <div class="detail-item">
+                        <span class="detail-item-label"><i class="fa-solid fa-fingerprint"></i> Product ID</span>
+                        <span class="detail-item-value" id="detailId">101</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-item-label"><i class="fa-solid fa-copyright"></i> Brand</span>
+                        <span class="detail-item-value" id="detailBrand">Apple</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-item-label"><i class="fa-solid fa-layer-group"></i> Category</span>
+                        <span class="detail-item-value" id="detailCategory">Smartphone</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-item-label"><i class="fa-solid fa-circle-check"></i> Availability</span>
+                        <span class="detail-item-value" id="detailAvailability">
+                            <span class="badge badge-in-stock">In Stock</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="detailsFavoriteToggleBtn">
+                    <i class="fa-regular fa-heart"></i>
+                    <span id="detailsFavText">Add to Favorites</span>
+                </button>
+                <button class="btn btn-primary" id="detailsEditBtn">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                    <span>Edit Product</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Confirmation Dialog (for Delete & Reset) -->
+    <div id="confirmModal" class="modal-overlay hidden" role="dialog" aria-modal="true">
+        <div class="modal-card confirm-card">
+            <div class="confirm-icon-box" id="confirmIcon">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+            <h3 class="confirm-title" id="confirmTitle">Are you sure?</h3>
+            <p class="confirm-message" id="confirmMessage">This action cannot be undone.</p>
+
+            <div class="confirm-actions">
+                <button class="btn btn-secondary" id="confirmCancelBtn">Cancel</button>
+                <button class="btn btn-danger" id="confirmProceedBtn">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+        <div class="footer-container">
+            <p>© 2026 Product Information Dashboard. Built with clean HTML5, CSS3, & Vanilla JavaScript.</p>
+            <div class="footer-links">
+                <span><i class="fa-solid fa-bolt"></i> Fast & Client-Side</span>
+                <span><i class="fa-solid fa-database"></i> LocalStorage Persistent</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom JavaScript -->
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RPS Camera — Rock Paper Scissors</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="game">
+    <header class="scoreboard">
+      <div class="score you">
+        <strong id="playerScore">0</strong>
+        <span>YOU</span>
+      </div>
+      <div class="score ai">
+        <strong id="aiScore">0</strong>
+        <span>AI</span>
+      </div>
+      <div class="score draw">
+        <strong id="drawScore">0</strong>
+        <span>DRAW</span>
+      </div>
+    </header>
+
+    <main class="camera-card">
+      <video id="video" autoplay muted playsinline></video>
+      <canvas id="overlay"></canvas>
+
+      <div class="camera-shade"></div>
+
+      <div class="top-message">
+        <span class="live-dot"></span>
+        <span id="statusText">Starting camera...</span>
+      </div>
+
+      <div class="instruction" id="instruction">
+        Allow camera access, then show your hand.
+      </div>
+
+      <div class="gesture-pill" id="gesturePill">
+        <span class="pill-dot"></span>
+        <span id="gestureEmoji">🖐️</span>
+        <b id="gestureText">Waiting</b>
+      </div>
+
+      <div class="controls">
+        <button id="playBtn" class="control active">
+          <b>Play round</b>
+          <kbd>SPACE</kbd>
+        </button>
+        <button id="autoBtn" class="control">
+          <b>Auto</b>
+          <kbd>A</kbd>
+        </button>
+        <button id="resetBtn" class="control">
+          <b>Reset</b>
+          <kbd>R</kbd>
+        </button>
+      </div>
+
+      <div class="round-result hidden" id="result">
+        <div class="result-title" id="resultTitle">You win</div>
+        <div class="result-sub" id="resultSub">Paper beats Rock</div>
+        <button id="nextBtn">Next round</button>
+      </div>
+
+      <div class="loading" id="loading">
+        <div class="loader"></div>
+        <b>Loading hand tracking...</b>
+        <span>This may take a few seconds.</span>
+      </div>
+    </main>
+
+    <section class="bottom-panel">
+      <div class="legend">
+        <span><i class="key-rock">✊</i> Rock</span>
+        <span><i class="key-paper">✋</i> Paper</span>
+        <span><i class="key-scissors">✌️</i> Scissors</span>
+      </div>
+      <p>Camera stays in your browser. No video is uploaded to a server.</p>
+    </section>
+  </div>
+
+  <div class="permission" id="permission">
+    <div class="permission-box">
+      <div class="permission-icon">📷</div>
+      <h2>Camera access needed</h2>
+      <p>This game uses your camera to recognize Rock, Paper and Scissors from your hand.</p>
+      <button id="cameraBtn">Allow camera</button>
+      <small>Use Chrome or Edge and make sure your camera is not blocked.</small>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

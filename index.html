@@ -1,0 +1,506 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Web Programming Lab</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            color: white;
+            background:
+                radial-gradient(circle at 10% 20%, #ff4ecd55, transparent 30%),
+                radial-gradient(circle at 90% 20%, #00e5ff55, transparent 30%),
+                radial-gradient(circle at 50% 90%, #7c4dff55, transparent 30%),
+                #090b1a;
+            overflow-x: hidden;
+        }
+
+        /* Animated background circles */
+
+        .background span {
+            position: fixed;
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.25;
+            z-index: -1;
+            animation: float 8s infinite alternate ease-in-out;
+        }
+
+        .background span:nth-child(1) {
+            background: #ff2d95;
+            top: 5%;
+            left: 5%;
+        }
+
+        .background span:nth-child(2) {
+            background: #00e5ff;
+            top: 50%;
+            right: 5%;
+            animation-delay: 2s;
+        }
+
+        .background span:nth-child(3) {
+            background: #8b5cf6;
+            bottom: 0;
+            left: 40%;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            from {
+                transform: translateY(0) scale(1);
+            }
+
+            to {
+                transform: translateY(-50px) scale(1.2);
+            }
+        }
+
+        /* Header */
+
+        header {
+            text-align: center;
+            padding: 70px 20px 30px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 8px 18px;
+            border-radius: 30px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: #00e5ff;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            font-size: clamp(38px, 7vw, 70px);
+            font-weight: 800;
+            letter-spacing: 2px;
+
+            background: linear-gradient(
+                90deg,
+                #ff4ecd,
+                #00e5ff,
+                #8b5cf6
+            );
+
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            margin-top: 15px;
+            color: #c8c9d8;
+            font-size: 18px;
+        }
+
+        /* Stats */
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 25px auto 45px;
+        }
+
+        .stat {
+            min-width: 150px;
+            padding: 15px 25px;
+            border-radius: 15px;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.12);
+            backdrop-filter: blur(10px);
+        }
+
+        .stat strong {
+            display: block;
+            font-size: 25px;
+            color: #fff;
+        }
+
+        .stat span {
+            color: #aaaabd;
+            font-size: 13px;
+        }
+
+        /* Project container */
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        /* Cards */
+
+        .card {
+            position: relative;
+            padding: 35px 30px;
+            border-radius: 25px;
+            min-height: 370px;
+
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.15);
+
+            backdrop-filter: blur(18px);
+
+            overflow: hidden;
+
+            transition: all 0.4s ease;
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            top: -70px;
+            right: -70px;
+            opacity: 0.7;
+        }
+
+        .book::before {
+            background: #ff3cac;
+        }
+
+        .product::before {
+            background: #00e5ff;
+        }
+
+        .game::before {
+            background: #8b5cf6;
+        }
+
+        .card:hover {
+            transform: translateY(-15px) scale(1.02);
+            border-color: rgba(255,255,255,0.35);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.35);
+        }
+
+        /* Icons */
+
+        .icon {
+            width: 75px;
+            height: 75px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 38px;
+
+            border-radius: 20px;
+
+            margin-bottom: 25px;
+
+            background: rgba(255,255,255,0.12);
+        }
+
+        .book .icon {
+            box-shadow: 0 0 25px #ff3cac66;
+        }
+
+        .product .icon {
+            box-shadow: 0 0 25px #00e5ff66;
+        }
+
+        .game .icon {
+            box-shadow: 0 0 25px #8b5cf666;
+        }
+
+        .card h2 {
+            font-size: 25px;
+            margin-bottom: 15px;
+        }
+
+        .card p {
+            color: #bfc1d1;
+            line-height: 1.7;
+            min-height: 85px;
+        }
+
+        /* Tags */
+
+        .tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+
+        .tag {
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            background: rgba(255,255,255,0.1);
+            color: #ddd;
+        }
+
+        /* Buttons */
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+
+            width: 100%;
+
+            padding: 13px 20px;
+
+            border-radius: 12px;
+
+            text-decoration: none;
+            color: white;
+
+            font-weight: 600;
+
+            transition: 0.3s;
+        }
+
+        .book .btn {
+            background: linear-gradient(90deg, #ff3cac, #784ba0);
+        }
+
+        .product .btn {
+            background: linear-gradient(90deg, #00c6ff, #0072ff);
+        }
+
+        .game .btn {
+            background: linear-gradient(90deg, #8b5cf6, #ec4899);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            filter: brightness(1.2);
+        }
+
+        /* Footer */
+
+        footer {
+            text-align: center;
+            padding: 50px 20px 30px;
+            color: #85869b;
+        }
+
+        footer span {
+            color: #00e5ff;
+        }
+
+        /* Responsive */
+
+        @media (max-width: 900px) {
+            .container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            header {
+                padding-top: 45px;
+            }
+
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+            .card {
+                min-height: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Animated Background -->
+
+    <div class="background">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+
+    <!-- Header -->
+
+    <header>
+
+        <div class="badge">
+            ✦ WEB PROGRAMMING LAB ✦
+        </div>
+
+        <h1>My Projects</h1>
+
+        <p>
+            Explore my Web Programming laboratory projects
+        </p>
+
+    </header>
+
+
+    <!-- Statistics -->
+
+    <section class="stats">
+
+        <div class="stat">
+            <strong>03</strong>
+            <span>Projects</span>
+        </div>
+
+        <div class="stat">
+            <strong>HTML</strong>
+            <span>Frontend</span>
+        </div>
+
+        <div class="stat">
+            <strong>JS</strong>
+            <span>Interactive</span>
+        </div>
+
+    </section>
+
+
+    <!-- Project Cards -->
+
+    <main class="container">
+
+
+        <!-- BOOK WEBSITE -->
+
+        <article class="card book">
+
+            <div class="icon">
+                📚
+            </div>
+
+            <h2>Lab 1</h2>
+
+            <p>
+                Book Information Website with a collection
+                of books and detailed information pages.
+            </p>
+
+            <div class="tags">
+                <span class="tag">HTML</span>
+                <span class="tag">CSS</span>
+                <span class="tag">JavaScript</span>
+            </div>
+
+            <a
+                href="./LAB 1/BOOK-WEBSITE/index.html"
+                class="btn"
+            >
+                Explore Books →
+            </a>
+
+        </article>
+
+
+        <!-- PRODUCT INFORMATION -->
+
+        <article class="card product">
+
+            <div class="icon">
+                🛍️
+            </div>
+
+            <h2>Lab 2</h2>
+
+            <p>
+                Product Information Website displaying
+                product details in a clean and organized
+                interface.
+            </p>
+
+            <div class="tags">
+                <span class="tag">HTML</span>
+                <span class="tag">CSS</span>
+                <span class="tag">JavaScript</span>
+            </div>
+
+            <a
+                href="./LAB 2/PRODUCT-INFORMATION/index.html"
+                class="btn"
+            >
+                View Products →
+            </a>
+
+        </article>
+
+
+        <!-- ROCK PAPER SCISSORS -->
+
+        <article class="card game">
+
+            <div class="icon">
+                ✊
+            </div>
+
+            <h2>Rock Paper Scissors</h2>
+
+            <p>
+                Interactive Rock Paper Scissors game
+                developed using HTML, CSS and JavaScript.
+            </p>
+
+            <div class="tags">
+                <span class="tag">Game</span>
+                <span class="tag">JavaScript</span>
+                <span class="tag">Interactive</span>
+            </div>
+
+            <a
+                href="./ROCK PAPER SCISSOR/index.html"
+                class="btn"
+            >
+                Play Game →
+            </a>
+
+        </article>
+
+
+    </main>
+
+
+    <!-- Footer -->
+
+    <footer>
+
+        <p>
+            Built with ❤️ using
+            <span>HTML</span>,
+            <span>CSS</span> &
+            <span>JavaScript</span>
+        </p>
+
+        <p style="margin-top:10px;">
+            © 2026 Web Programming Lab
+        </p>
+
+    </footer>
+
+
+</body>
+</html>
+```

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Information</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>📚 Book Library</h1>
+        <p>Book Information</p>
+    </header>
+
+    <main class="details-page">
+        <a href="index.html" class="back-button">← Back to Books</a>
+
+        <div class="book-details">
+            <div class="large-cover" id="bookCover"></div>
+
+            <div class="book-info">
+                <h2 id="bookTitle">Book Title</h2>
+                <p><strong>Author:</strong> <span id="bookAuthor"></span></p>
+                <p><strong>Category:</strong> <span id="bookCategory"></span></p>
+                <p><strong>Price:</strong> ₹<span id="bookPrice"></span></p>
+                <p><strong>Rating:</strong> ⭐ <span id="bookRating"></span></p>
+
+                <h3>Description</h3>
+                <p id="bookDescription"></p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2026 Book Library</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
