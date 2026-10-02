@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Country and Capital</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="badge">World facts</div>
+        <h1>Country & Capital</h1>
+
+        <div class="selector-row">
+            <label for="country">Select a country</label>
+            <select id="country" onchange="showCapital()">
+                <option value="">-- Select Country --</option>
+                <option value="New Delhi">India</option>
+                <option value="Washington, D.C.">United States</option>
+                <option value="Tokyo">Japan</option>
+                <option value="Paris">France</option>
+                <option value="Canberra">Australia</option>
+            </select>
+        </div>
+
+        <div id="capital" aria-live="polite"></div>
+    </div>
+
+    <script>
+        function showCapital() {
+            const country = document.getElementById("country");
+            const capital = document.getElementById("capital");
+
+            if (country.value === "") {
+                capital.textContent = "";
+            } else {
+                capital.textContent = "Capital: " + country.value;
+            }
+        }
+    </script>
+</body>
+</html>

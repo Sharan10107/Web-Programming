@@ -1,6 +1,6 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,7 +26,9 @@
             overflow-x: hidden;
         }
 
-        /* Animated background circles */
+        /* =========================
+           ANIMATED BACKGROUND
+        ========================= */
 
         .background span {
             position: fixed;
@@ -69,7 +71,9 @@
             }
         }
 
-        /* Header */
+        /* =========================
+           HEADER
+        ========================= */
 
         header {
             text-align: center;
@@ -80,8 +84,8 @@
             display: inline-block;
             padding: 8px 18px;
             border-radius: 30px;
-            background: rgba(255,255,255,0.1);
-            border: 1px solid rgba(255,255,255,0.2);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             color: #00e5ff;
             font-size: 14px;
             margin-bottom: 20px;
@@ -109,7 +113,9 @@
             font-size: 18px;
         }
 
-        /* Stats */
+        /* =========================
+           STATISTICS
+        ========================= */
 
         .stats {
             display: flex;
@@ -123,9 +129,10 @@
             min-width: 150px;
             padding: 15px 25px;
             border-radius: 15px;
-            background: rgba(255,255,255,0.08);
-            border: 1px solid rgba(255,255,255,0.12);
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.12);
             backdrop-filter: blur(10px);
+            text-align: center;
         }
 
         .stat strong {
@@ -139,10 +146,12 @@
             font-size: 13px;
         }
 
-        /* Project container */
+        /* =========================
+           PROJECT CONTAINER
+        ========================= */
 
         .container {
-            max-width: 1200px;
+            max-width: 1250px;
             margin: auto;
             padding: 20px;
             display: grid;
@@ -150,16 +159,18 @@
             gap: 30px;
         }
 
-        /* Cards */
+        /* =========================
+           CARDS
+        ========================= */
 
         .card {
             position: relative;
             padding: 35px 30px;
             border-radius: 25px;
-            min-height: 370px;
+            min-height: 360px;
 
-            background: rgba(255,255,255,0.07);
-            border: 1px solid rgba(255,255,255,0.15);
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.15);
 
             backdrop-filter: blur(18px);
 
@@ -179,6 +190,8 @@
             opacity: 0.7;
         }
 
+        /* Card colors */
+
         .book::before {
             background: #ff3cac;
         }
@@ -187,17 +200,39 @@
             background: #00e5ff;
         }
 
+        .lab3::before {
+            background: #14b8a6;
+        }
+
+        .lab4::before {
+            background: #f59e0b;
+        }
+
+        .lab5::before {
+            background: #ef4444;
+        }
+
+        .lab6::before {
+            background: #22c55e;
+        }
+
+        .lab7::before {
+            background: #3b82f6;
+        }
+
         .game::before {
             background: #8b5cf6;
         }
 
         .card:hover {
             transform: translateY(-15px) scale(1.02);
-            border-color: rgba(255,255,255,0.35);
-            box-shadow: 0 25px 60px rgba(0,0,0,0.35);
+            border-color: rgba(255, 255, 255, 0.35);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
         }
 
-        /* Icons */
+        /* =========================
+           ICONS
+        ========================= */
 
         .icon {
             width: 75px;
@@ -213,7 +248,7 @@
 
             margin-bottom: 25px;
 
-            background: rgba(255,255,255,0.12);
+            background: rgba(255, 255, 255, 0.12);
         }
 
         .book .icon {
@@ -224,9 +259,33 @@
             box-shadow: 0 0 25px #00e5ff66;
         }
 
+        .lab3 .icon {
+            box-shadow: 0 0 25px #14b8a666;
+        }
+
+        .lab4 .icon {
+            box-shadow: 0 0 25px #f59e0b66;
+        }
+
+        .lab5 .icon {
+            box-shadow: 0 0 25px #ef444466;
+        }
+
+        .lab6 .icon {
+            box-shadow: 0 0 25px #22c55e66;
+        }
+
+        .lab7 .icon {
+            box-shadow: 0 0 25px #3b82f666;
+        }
+
         .game .icon {
             box-shadow: 0 0 25px #8b5cf666;
         }
+
+        /* =========================
+           CARD TEXT
+        ========================= */
 
         .card h2 {
             font-size: 25px;
@@ -239,7 +298,9 @@
             min-height: 85px;
         }
 
-        /* Tags */
+        /* =========================
+           TAGS
+        ========================= */
 
         .tags {
             display: flex;
@@ -252,11 +313,13 @@
             padding: 5px 10px;
             border-radius: 20px;
             font-size: 11px;
-            background: rgba(255,255,255,0.1);
+            background: rgba(255, 255, 255, 0.1);
             color: #ddd;
         }
 
-        /* Buttons */
+        /* =========================
+           BUTTONS
+        ========================= */
 
         .btn {
             display: inline-flex;
@@ -286,6 +349,26 @@
             background: linear-gradient(90deg, #00c6ff, #0072ff);
         }
 
+        .lab3 .btn {
+            background: linear-gradient(90deg, #14b8a6, #0891b2);
+        }
+
+        .lab4 .btn {
+            background: linear-gradient(90deg, #f59e0b, #ef4444);
+        }
+
+        .lab5 .btn {
+            background: linear-gradient(90deg, #ef4444, #ec4899);
+        }
+
+        .lab6 .btn {
+            background: linear-gradient(90deg, #22c55e, #06b6d4);
+        }
+
+        .lab7 .btn {
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+        }
+
         .game .btn {
             background: linear-gradient(90deg, #8b5cf6, #ec4899);
         }
@@ -295,7 +378,9 @@
             filter: brightness(1.2);
         }
 
-        /* Footer */
+        /* =========================
+           FOOTER
+        ========================= */
 
         footer {
             text-align: center;
@@ -307,11 +392,13 @@
             color: #00e5ff;
         }
 
-        /* Responsive */
+        /* =========================
+           RESPONSIVE
+        ========================= */
 
-        @media (max-width: 900px) {
+        @media (max-width: 1000px) {
             .container {
-                grid-template-columns: 1fr 1fr;
+                grid-template-columns: repeat(2, 1fr);
             }
         }
 
@@ -326,6 +413,14 @@
 
             .card {
                 min-height: auto;
+            }
+
+            .stats {
+                gap: 10px;
+            }
+
+            .stat {
+                min-width: 120px;
             }
         }
     </style>
@@ -353,7 +448,7 @@
         <h1>My Projects</h1>
 
         <p>
-            Explore my Web Programming laboratory projects
+            Explore all my Web Programming laboratory projects
         </p>
 
     </header>
@@ -364,7 +459,7 @@
     <section class="stats">
 
         <div class="stat">
-            <strong>03</strong>
+            <strong>08</strong>
             <span>Projects</span>
         </div>
 
@@ -386,7 +481,7 @@
     <main class="container">
 
 
-        <!-- BOOK WEBSITE -->
+        <!-- LAB 1 -->
 
         <article class="card book">
 
@@ -411,13 +506,13 @@
                 href="./LAB 1/BOOK-WEBSITE/index.html"
                 class="btn"
             >
-                Explore Books →
+                Explore Lab 1 →
             </a>
 
         </article>
 
 
-        <!-- PRODUCT INFORMATION -->
+        <!-- LAB 2 -->
 
         <article class="card product">
 
@@ -429,8 +524,7 @@
 
             <p>
                 Product Information Website displaying
-                product details in a clean and organized
-                interface.
+                product details in a clean and organized interface.
             </p>
 
             <div class="tags">
@@ -443,7 +537,161 @@
                 href="./LAB 2/PRODUCT-INFORMATION/index.html"
                 class="btn"
             >
-                View Products →
+                Explore Lab 2 →
+            </a>
+
+        </article>
+
+
+        <!-- LAB 3 -->
+
+       <!-- LAB 3 -->
+
+<article class="card lab3">
+
+    <div class="icon">
+        🌐
+    </div>
+
+    <h2>Lab 3</h2>
+
+    <p>
+        Book Information Website with multiple
+        books and detailed information pages.
+    </p>
+
+    <div class="tags">
+        <span class="tag">HTML</span>
+        <span class="tag">CSS</span>
+        <span class="tag">JavaScript</span>
+    </div>
+
+    <a
+        href="./LAB 3/BOOK INFORMATION/index.html"
+        class="btn"
+    >
+        Explore Lab 3 →
+    </a>
+
+</article>
+
+
+        <!-- LAB 4 -->
+
+        <!-- LAB 4 -->
+
+<article class="card lab4">
+
+    <div class="icon">
+        🧮
+    </div>
+
+    <h2>Lab 4</h2>
+
+    <p>
+        Country and Capital selection website
+        displaying the capital of the selected country.
+    </p>
+
+    <div class="tags">
+        <span class="tag">HTML</span>
+        <span class="tag">CSS</span>
+        <span class="tag">JavaScript</span>
+    </div>
+
+    <a
+        href="./LAB 4/COUNTRY CAPITAL/index.html"
+        class="btn"
+    >
+        Explore Lab 4 →
+    </a>
+
+</article>
+
+
+        <!-- LAB 5 -->
+
+        <article class="card lab5">
+
+            <div class="icon">
+                ⚡
+            </div>
+
+            <h2>Lab 5</h2>
+
+            <p>
+                Web Programming Lab 5 project with
+                interactive functionality and responsive design.
+            </p>
+
+            <div class="tags">
+                <span class="tag">HTML</span>
+                <span class="tag">CSS</span>
+                <span class="tag">JavaScript</span>
+            </div>
+
+          <a href="./LAB 5/MY COLLEGE/index.html" class="btn">
+    Explore Lab 5 →
+                </a>
+
+        </article>
+
+
+        <!-- LAB 6 -->
+
+        <article class="card lab6">
+
+            <div class="icon">
+                💻
+            </div>
+
+            <h2>Lab 6</h2>
+
+            <p>
+                Web Programming Lab 6 project implementing
+                the required laboratory concepts.
+            </p>
+
+            <div class="tags">
+                <span class="tag">HTML</span>
+                <span class="tag">CSS</span>
+                <span class="tag">JavaScript</span>
+            </div>
+
+            <a href="./LAB 6/MY WEB PAGE/index.html" class="btn">
+   
+                Explore Lab 6 →
+
+            </a>
+
+
+        </article>
+
+
+        <!-- LAB 7 -->
+
+        <article class="card lab7">
+
+            <div class="icon">
+                🚀
+            </div>
+
+            <h2>Lab 7</h2>
+
+            <p>
+                Web Programming Lab 7 project containing
+                the final practical implementation.
+            </p>
+
+            <div class="tags">
+                <span class="tag">HTML</span>
+                <span class="tag">CSS</span>
+                <span class="tag">JavaScript</span>
+            </div>
+
+           <a href="./LAB 7/MATH CALCULATOR/index.html" class="btn">
+    Explore Lab 7 →
+
             </a>
 
         </article>
@@ -502,5 +750,5 @@
 
 
 </body>
+
 </html>
-```
