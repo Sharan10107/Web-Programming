@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Information from XML</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Employee Information</h1>
+        <p class="subtitle">Employee records loaded from an XML file</p>
+
+        <button id="loadButton" type="button">Load Employee Data</button>
+        <p id="message" aria-live="polite">Click the button to read employee.xml.</p>
+
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Employee ID</th>
+                        <th>Name</th>
+                        <th>Department</th>
+                        <th>Designation</th>
+                        <th>Salary (₹)</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody id="employeeData">
+                    <tr>
+                        <td colspan="6" class="empty">No data loaded yet.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("loadButton").addEventListener("click", loadEmployees);
+
+        async function loadEmployees() {
+            const message = document.getElementById("message");
+            const tableBody = document.getElementById("employeeData");
+
+            message.textContent = "Loading employee data...";
+            try {
+                const response = await fetch("employee.xml");
+                if (!response.ok) {
+                    throw new Error("Could not find employee.xml.");
+                }
+
+                const xmlText = await response.text();
+                const parser = new DOMParser();
+                const xmlDoc = parser.parseFromString(xmlText, "application/xml");
+
+                if (xmlDoc.querySelector("parsererror")) {
+                    throw new Error("The XML file has an invalid format.");
+                }
+
+                const employees = xmlDoc.getElementsByTagName("employee");
+                tableBody.replaceChildren();
+
+                if (employees.length === 0) {
+                    tableBody.innerHTML =
+                        '<tr><td colspan="6" class="empty">No employee records found.</td></tr>';
+                } else {
+                    for (const employee of employees) {
+                        const row = document.createElement("tr");
+                        const fields = ["id", "name", "department", "designation", "salary", "email"];
+
+                        for (const field of fields) {
+                            const cell = document.createElement("td");
+                            const value = employee.getElementsByTagName(field)[0];
+                            cell.textContent = value ? value.textContent.trim() : "";
+                            row.appendChild(cell);
+                        }
+
+                        tableBody.appendChild(row);
+                    }
+                }
+
+                message.textContent = employees.length + " employee record(s) loaded successfully.";
+            } catch (error) {
+                tableBody.innerHTML =
+                    '<tr><td colspan="6" class="empty">Unable to load employee data.</td></tr>';
+                message.textContent = error.message +
+                    " Run this folder using VS Code Live Server (not by opening the HTML file directly).";
+            }
+        }
+    </script>
+</body>
+</html>
